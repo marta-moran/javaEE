@@ -1,0 +1,5 @@
+127.0.0.1 - - [25/Jan/2022:11:09:58 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [25/Jan/2022:11:09:58 +0100] "GET /primerosServlets/ArrayAleatorios HTTP/1.1" 200 303
+0:0:0:0:0:0:0:1 - - [25/Jan/2022:11:09:58 +0100] "GET /favicon.ico HTTP/1.1" 404 1026
+127.0.0.1 - - [25/Jan/2022:11:10:47 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [25/Jan/2022:11:10:47 +0100] "GET /primerosServlets/ArrayAleatorios HTTP/1.1" 200 293
