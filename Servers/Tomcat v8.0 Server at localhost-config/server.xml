@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Ejercicio01" path="/Ejercicio01" reloadable="true" source="org.eclipse.jst.jee.server:Ejercicio01"/><Context docBase="cursojavaee" path="/cursojavaee" reloadable="true" source="org.eclipse.jst.jee.server:cursojavaee"/><Context docBase="primerosServlets" path="/primerosServlets" reloadable="true" source="org.eclipse.jst.jee.server:primerosServlets"/></Host>
+      <Context docBase="Ejercicio01" path="/Ejercicio01" reloadable="true" source="org.eclipse.jst.jee.server:Ejercicio01"/><Context docBase="cursojavaee" path="/cursojavaee" reloadable="true" source="org.eclipse.jst.jee.server:cursojavaee"/><Context docBase="primerosServlets" path="/primerosServlets" reloadable="true" source="org.eclipse.jst.jee.server:primerosServlets"/><Context docBase="tarjetas" path="/tarjetas" reloadable="true" source="org.eclipse.jst.jee.server:tarjetas"/><Context docBase="controljava" path="/controljava" reloadable="true" source="org.eclipse.jst.jee.server:controljava"/><Context docBase="MVCbasico" path="/MVCbasico" reloadable="true" source="org.eclipse.jst.jee.server:MVCbasico"/></Host>
     </Engine>
   </Service>
 </Server>

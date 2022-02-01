@@ -5,6 +5,8 @@
 		<item value="NULL_RUNTIME"/>
 	</list>
 	<list key="J2EE_IMPORT_null">
+		<item value="C:\Users\marta\Downloads\MVCbasico.war"/>
+		<item value="C:\Users\marta\Downloads\controljava.war"/>
 		<item value="C:\Users\marta\Downloads\cursojavaee.war"/>
 		<item value="C:\Users\marta\Downloads\Ejercicio01.war"/>
 	</list>

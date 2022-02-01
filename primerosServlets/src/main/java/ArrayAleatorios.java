@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -24,9 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ArrayAleatorios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    int contador = 0;
     public ArrayAleatorios() {
         super();
         // TODO Auto-generated constructor stub
@@ -50,7 +49,34 @@ public class ArrayAleatorios extends HttpServlet {
 			salida.println("<td>" + random[i] + "</td>");
 		}
 		salida.println("</tr></table>");
+		salida.println("Número máximo: " + numeroMax(random));
+		salida.println("Número máximo: " + numeroMin(random));
+		
 	}
+	
+	
+	public int numeroMax(int t[]) {
+		int resu = t[0];
+		for(int i=1; i<t.length; i++) { //recorre la tabla
+			if (t[i] > resu) { 
+				resu = t[i];
+			}
+		}
+		return resu;
+	}
+	
+	public int numeroMin(int t[]) {
+		int resu = t[0];
+		for(int i=1; i<t.length; i++) { //recorre la tabla
+			if (t[i] < resu) { 
+				resu = t[i];
+			}
+		}
+		return resu;
+
+	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
