@@ -26,21 +26,21 @@ public class Acciones {
 		 request.setAttribute("prod", prod);
 		 request.getRequestDispatcher("/WEB-INF/layout/formulario.jsp").forward(request, response);
 	}
-	 void accionBorrar ( String producto_no ){
+	 void accionBorrar ( String id){
 		 AccesoDatos db = AccesoDatos.initModelo();
-		 db.borrarUsuario(producto_no);	
+		 db.borrarProducto(id);	
 	}
-	void accionModificar (String producto_no) throws ServletException, IOException {
+	void accionModificar (String id) throws ServletException, IOException {
 		 AccesoDatos db = AccesoDatos.initModelo();
-		 	Producto prod = db.getProducto(producto_no); //revisar el parametro q se pasa, creo q es producto_no
+		 	Producto prod = db.getProducto(id); //revisar el parametro q se pasa, creo q es producto_no
 		    request.setAttribute("orden", "Modificar");
 		    request.setAttribute("prod", prod);
 			request.getRequestDispatcher("/WEB-INF/layout/formulario.jsp").forward(request, response);
 
 	}
-	 void accionDetalles  (String producto_no ) throws ServletException, IOException {
+	 void accionDetalles  (String id) throws ServletException, IOException {
 		    AccesoDatos db = AccesoDatos.initModelo();
-		    Producto prod = db.getProducto(producto_no);
+		    Producto prod = db.getProducto(id);
 		    request.setAttribute("orden", "Detalles");
 		    request.setAttribute("prod", prod);
 			request.getRequestDispatcher("/WEB-INF/layout/formulario.jsp").forward(request, response);
@@ -57,13 +57,13 @@ public class Acciones {
    	  prod.setPrecio_actual(Float.parseFloat(request.getParameter("precio_actual")));
    	  prod.setStock_disponible(Integer.parseInt(request.getParameter("stock_disponible")));
    	  AccesoDatos db = AccesoDatos.initModelo();
-   	  db.addUsuario(prod);
+   	  db.addProducto(prod);
     }
     void accionPostModificar() {
     	// Habrá que controlar los datos de recibido <<<<<<<
      	  Producto prod = new Producto();
     	  prod.setProducto_no(Integer.parseInt(request.getParameter("producto_no")));
-    	  prod.setDescripcion(request.getParameter("nombre"));
+    	  prod.setDescripcion(request.getParameter("descripcion"));
     	  prod.setPrecio_actual(Float.parseFloat(request.getParameter("precio_actual")));
     	  prod.setStock_disponible(Integer.parseInt(request.getParameter("stock_disponible")));
     	  AccesoDatos db = AccesoDatos.initModelo();

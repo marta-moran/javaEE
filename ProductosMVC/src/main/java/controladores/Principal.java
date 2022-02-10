@@ -40,10 +40,10 @@ public class Principal extends HttpServlet {
 				acciones.accionBorrar(request.getParameter("id"));
 				break;
 			case "Modificar":
-				acciones.accionModificar(request.getParameter("id"));
+				acciones.accionModificar(request.getParameter("producto_no"));
 				break;
 			case "Detalles":
-				 acciones.accionDetalles(request.getParameter("id"));
+				 acciones.accionDetalles(request.getParameter("producto_no"));
 				 break;
 			case "Terminar":
 				acciones.accionTerminar();

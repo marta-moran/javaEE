@@ -35,7 +35,7 @@ public class AccesoDatos {
 
 			
 			 this.stmt_productos  = conexion.prepareStatement("select * from PRODUCTOS");
-		     this.stmt_producto   = conexion.prepareStatement("select * from PRODUCTOS where PRUDUCTO_NO =?");
+		     this.stmt_producto   = conexion.prepareStatement("select * from PRODUCTOS where PRODUCTO_NO =?");
 		     this.stmt_borproducto   = conexion.prepareStatement("delete from PRODUCTOS where PRODUCTO_NO =?");
 		     this.stmt_modproducto   = conexion.prepareStatement("update PRODUCTOS set DESCRIPCION=?, PRECIO_ACTUAL=?, STOCK_DISPONIBLE=? where PRODUCTO_NO=?");
 		     this.stmt_creaproducto  = conexion.prepareStatement("insert into PRODUCTOS (PRODUCTO_NO,DESCRIPCION,PRECIO_ACTUAL,STOCK_DISPONIBLE) Values(?,?,?,?)");
@@ -84,12 +84,12 @@ public class AccesoDatos {
     }
 	
     // revisar id. Sería producto_no
-    public Producto getProducto(String producto_no) {
+    public Producto getProducto(String id) {
     	Producto p = null;
     	
         ResultSet rs; 
         try {
-        	this.stmt_producto.setString(1, producto_no);
+        	this.stmt_producto.setString(1, id);
 			rs =  this.stmt_producto.executeQuery();
 			  if  ( rs.next()) {
 		        	p = new Producto();
@@ -124,7 +124,7 @@ public class AccesoDatos {
     }
     
     //INSERT
-    public boolean addUsuario(Producto prod){
+    public boolean addProducto(Producto prod){
         boolean resu = false;
     	try {
     	stmt_creaproducto.setInt(1,prod.getProducto_no());
@@ -140,7 +140,7 @@ public class AccesoDatos {
     
     
     // DELETE Elimino un usuario
-    public boolean borrarUsuario(String producto_no)  {
+    public boolean borrarProducto(String producto_no)  {
         boolean resu = false;
     	
         try {
