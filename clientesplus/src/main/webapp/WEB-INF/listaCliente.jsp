@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="modelo.Cliente, java.util.ArrayList" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="modelo.Cliente, java.util.ArrayList"%>
 
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 <title>Lista de Clientes</title>
 </head>
 <body>
-<%
+	<%
 ArrayList<Cliente> listaClientes = (ArrayList<Cliente>) request.getAttribute("tablaClientes");
 //int contador;
 
