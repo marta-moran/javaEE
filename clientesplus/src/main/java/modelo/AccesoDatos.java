@@ -45,21 +45,21 @@ public class AccesoDatos {
         try {
         	this.stmt_consulta.setInt(1, puntos);
 			rs =  this.stmt_consulta.executeQuery();
-			while ( rs.next()) {
+			while ( rs.next()) { //si no pongo el while no recorre todos los registros
 				  //Cliente client = null;
 				  Cliente client = new Cliente();
 				  client.setTelefono(rs.getInt("telefono"));
 				  client.setNombre(rs.getString("nombre"));
 				  client.setPuntos(rs.getInt("puntos"));
 
-				  clientes.add(client);
+				  clientes.add(client); //añado el cliente al array list que muestro en el jsp
 			  }
 		        	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-          	return clientes;
+          	return clientes; //devuelvo el arrayList
     }
 	
 

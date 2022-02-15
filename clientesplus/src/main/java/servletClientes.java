@@ -17,7 +17,9 @@ public class servletClientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
-	//esta función comprueba que no contenga letras
+/*	FUNCIONES QUE COMPRUEBAN LO INTRODUCIDO PERO NO HACEN FALTA, MEJOR CON UN TRY AND CATCH
+ * 
+ * //esta función comprueba que no contenga letras
 	public static boolean comprobarLetras(String puntos, String minusculas, String mayusculas) {
 		boolean noCaracteres = true;
 		for(int i = 0; i < minusculas.length(); i++) {
@@ -50,8 +52,10 @@ public class servletClientes extends HttpServlet {
 			}
 		}
 		return noNumeros;
-	}
+	} */
 	
+	
+	/*función que comprueba que sea número*/
 	public static boolean esNumero(String puntos) { 
 		  try {  
 		    Double.parseDouble(puntos);  
@@ -89,7 +93,7 @@ public class servletClientes extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/listaCliente.jsp").forward(request, response);
 			return;
 			
-		
+
 		} else {
 		
 			//debe llamar al archivo de error.jsp y mandar un mensaje
@@ -99,10 +103,6 @@ public class servletClientes extends HttpServlet {
 			return;
 		
 		}
-		
-	
-		
-		
 	}
 
 	/**
