@@ -14,10 +14,12 @@
 <h1>GESTIÓN DE USUARIOS JAVAEE</h1>
 </div>
 <div id="content">
-${contenido} 
 <form>
+${contenido} 
 <button name="orden" value="Nuevo"> Nuevo </button>
 <button name="orden" value="Terminar"> Terminar </button>
+<button name="orden" value="Saldo"> Incrementar saldo </button>
+<button name="orden" value="Bloqueo"> Bloqueo </button>
 </form>
 </div>
 </div>

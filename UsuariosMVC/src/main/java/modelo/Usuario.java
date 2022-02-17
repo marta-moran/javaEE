@@ -6,6 +6,9 @@ public class Usuario {
 	private String login;
     private String password;
     private String comentario;
+    private int bloqueo;
+    private double saldo;
+  
     
     public String getNombre() {
 		return nombre;
@@ -31,5 +34,19 @@ public class Usuario {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+	public int getBloqueo() {
+		return bloqueo;
+	}
+	public void setBloqueo(int bloqueo) {
+		this.bloqueo = bloqueo;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	
+	
 	
 }

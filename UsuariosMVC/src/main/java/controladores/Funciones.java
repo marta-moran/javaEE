@@ -10,7 +10,7 @@ public class Funciones {
 	static String  mostrarDatos (){
 	    
 		String msg ="";
-	    String titulos []= { "Nombre","login","Password","Comentario"};
+	    String titulos []= { "", "Nombre","login","Password", "Comentario", "Bloqueo", "Saldo"};
 	    msg += "<table>\n";
 	     // Identificador de la tabla
 	    msg += "<tr>";
@@ -22,10 +22,13 @@ public class Funciones {
 	    ArrayList <Usuario> tuser = db.getUsuarios();
 	    for (Usuario user: tuser) {
 	        msg += "<tr>";
+	        msg += "<td>"+ "<input type='checkbox' name= 'users' value='" + user.getLogin() + "' " +"</td>";
 	        msg += "<td>"+user.getNombre()  +"</td>";
 	        msg += "<td>"+user.getLogin()   +"</td>";
 	        msg += "<td>"+user.getPassword()+"</td>";
 	        msg += "<td>"+user.getComentario()+"</td>";
+	        msg += "<td>"+user.getBloqueo()+"</td>";
+	        msg += "<td>"+user.getSaldo()+"</td>";
 	        msg +="<td><a href='#' onclick=\"confirmarBorrar('"+user.getNombre()+"','"+user.getLogin()+"');\" >Borrar</a></td>\n";
 	        msg +="<td><a href='?orden=Modificar&id="+ user.getLogin() +"'>Modificar</a></td>\n";
 	        msg +="<td><a href='?orden=Detalles&id=" + user.getLogin() +"' >Detalles</a></td>\n";

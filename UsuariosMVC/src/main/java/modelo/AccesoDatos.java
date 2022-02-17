@@ -21,6 +21,10 @@ public class AccesoDatos {
     private PreparedStatement stmt_boruser  = null;
     private PreparedStatement stmt_moduser  = null;
     private PreparedStatement stmt_creauser = null;
+    private PreparedStatement stmt_bloqueo  = null;
+    private PreparedStatement stmt_desBloqueo  = null;
+    private PreparedStatement stmt_masSaldo = null;
+    
 	
 	public static synchronized  AccesoDatos initModelo(){
 		if (modelo == null){
@@ -29,7 +33,6 @@ public class AccesoDatos {
 		return modelo;
 	}
 	
-	// Creo un lista de alimentos, podrÃ­a obtenerse de una base de datos
 	private AccesoDatos (){
 		try {
 			
@@ -43,8 +46,12 @@ public class AccesoDatos {
 		     this.stmt_usuario   = conexion.prepareStatement("select * from Usuarios where login=?");
 		     this.stmt_boruser   = conexion.prepareStatement("delete from Usuarios where login =?");
 		     this.stmt_moduser   = conexion.prepareStatement("update Usuarios set nombre=?, password=?, comentario=? where login=?");
-		     this.stmt_creauser  = conexion.prepareStatement("insert into Usuarios (login,nombre,password,comentario) Values(?,?,?,?)");
-			
+		     this.stmt_creauser  = conexion.prepareStatement("insert into Usuarios (login,nombre,password,comentario,bloqueo,saldo) Values(?,?,?,?,?,?)");
+		     this.stmt_masSaldo  = conexion.prepareStatement("update Usuarios set saldo = saldo * 1.10 where login =?");
+		     this.stmt_bloqueo  = conexion.prepareStatement("update Usuarios set bloqueo =  1 where login =?");
+		     this.stmt_desBloqueo  = conexion.prepareStatement("update Usuarios set bloqueo = 0 where login =?");
+
+		    
 
 		} catch (Exception ex) {
 			System.err.println(" Error - En la base de datos.");
@@ -77,7 +84,10 @@ public class AccesoDatos {
 		        	usr.setNombre(rs.getString("Nombre"));
 		        	usr.setPassword(rs.getString("password"));
                     usr.setComentario(rs.getString("Comentario"));
+                    usr.setBloqueo(rs.getInt("bloqueo"));
+                    usr.setSaldo(rs.getDouble("saldo"));
                     tuser.add(usr);
+                  //se debe añadir los valors de bloqueo y saldo para que se pueda ejecutar correctamente la consulta
 			  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -102,6 +112,8 @@ public class AccesoDatos {
 		        	usr.setNombre(rs.getString("nombre"));
 		        	usr.setPassword(rs.getString("password"));
                     usr.setComentario(rs.getString("Comentario"));
+                    usr.setBloqueo(rs.getInt("bloqueo"));
+                    usr.setSaldo(rs.getDouble("saldo"));
 			  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -136,6 +148,9 @@ public class AccesoDatos {
 		stmt_creauser.setString(2,user.getNombre());
         stmt_creauser.setString(3,user.getPassword());
         stmt_creauser.setString(4,user.getComentario());
+        stmt_creauser.setInt(5,user.getBloqueo());
+        stmt_creauser.setDouble(6, 1);
+        //se debe añadir los valors de bloqueo y saldo para que se pueda ejecutar correctamente la consulta
         resu = stmt_creauser.execute();
     	} catch (SQLException e) {
     		e.printStackTrace();
@@ -158,6 +173,50 @@ public class AccesoDatos {
        return resu; 
         
     }  
+    
+    public boolean incrementaSaldo(Usuario user) {
+    
+ 	boolean resu = false;
+ 	try {
+    	stmt_masSaldo.setString(1,user.getLogin());
+        resu = stmt_masSaldo.execute();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}     
+    return resu;
+}
+    
+    public boolean bloquear(String id) {
+        
+     	boolean resu = false;
+     	
+     	try {
+        	stmt_bloqueo.setString(1,id);
+            resu = stmt_bloqueo.execute();
+    	} catch (SQLException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}     
+        return resu;
+    }
+      
+public boolean desbloquear(String id) {
+        
+     	boolean resu = false;
+     	
+     	try {
+        	stmt_desBloqueo.setString(1,id);
+            resu = stmt_desBloqueo.execute();
+    	} catch (SQLException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}     
+        return resu;
+    }
+    
+    
+    
     
     
     

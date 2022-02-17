@@ -4,6 +4,7 @@ import modelo.AccesoDatos;
 import modelo.Usuario;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,31 @@ public class Acciones {
 		 AccesoDatos db = AccesoDatos.initModelo();
 		 db.borrarUsuario(id);	
 	}
+	 
+	 void incrementarSaldo(String[] ids) throws ServletException, IOException {
+		 AccesoDatos db = AccesoDatos.initModelo();
+		 for(String id:ids){
+			 Usuario user = db.getUsuario(id);
+			 db.incrementaSaldo(user);
+		}
+		 response.sendRedirect("./indice");
+	 }
+	 
+	 void accionBloqueo(String[] ids) throws ServletException, IOException {
+		 AccesoDatos db = AccesoDatos.initModelo();
+		 ArrayList <Usuario> usuarios = db.getUsuarios();
+		 
+		 for(Usuario user : usuarios) {
+			 db.desbloquear(user.getLogin());
+			for(String id : ids) {
+				if(user.getLogin().equals(id)) {
+					db.bloquear(id);
+				} 
+			}	 
+		}
+		 response.sendRedirect("./indice"); 
+	 }
+	 
 	void accionModificar (String id ) throws ServletException, IOException {
 		 AccesoDatos db = AccesoDatos.initModelo();
 		    Usuario user = db.getUsuario(id);
@@ -49,7 +75,7 @@ public class Acciones {
     }
     
     void accionPostAlta() {
-      // Habrá que controlar los datos de recibido <<<<<<<
+      // HabrÃ­a que controlar los datos de recibido <<<<<<<
       Usuario user = new Usuario();
    	  user.setLogin( request.getParameter("login"));
    	  user.setNombre(request.getParameter("nombre"));
@@ -59,7 +85,7 @@ public class Acciones {
    	  db.addUsuario(user);
     }
     void accionPostModificar() {
-    	// Habrá que controlar los datos de recibido <<<<<<<
+    	// HabrÃ­a que controlar los datos de recibido <<<<<<<
      	  Usuario user = new Usuario();
     	  user.setLogin( request.getParameter("login"));
     	  user.setNombre(request.getParameter("nombre"));

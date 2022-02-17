@@ -39,6 +39,14 @@ public class Principal extends HttpServlet {
 			case "Borrar":
 				acciones.accionBorrar(request.getParameter("id"));
 				break;
+			case "Saldo":
+				String[] ids = request.getParameterValues("users");
+				acciones.incrementarSaldo(ids);
+				break;
+			case "Bloqueo":
+				String[] idsBloqueos = request.getParameterValues("users");
+				acciones.accionBloqueo(idsBloqueos);
+				break;
 			case "Modificar":
 				acciones.accionModificar(request.getParameter("id"));
 				break;
